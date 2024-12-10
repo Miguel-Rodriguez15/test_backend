@@ -66,9 +66,16 @@ public class ProductService {
     List<Branch> branches = branchRepository.findByFranchiseId(franchiseId);
 
     return branches.stream()
-            .flatMap(branch -> productRepository.findAllWithMaxStockByBranchId(branch.getId()).stream())
-            .distinct()
-            .collect(Collectors.toList());
-}
-      
+        .flatMap(branch -> productRepository.findAllWithMaxStockByBranchId(branch.getId()).stream())
+        .distinct()
+        .collect(Collectors.toList());
+  }
+
+  public Product updateProductName(Long productId, String newName) {
+    Product product = productRepository.findById(productId)
+        .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
+    product.setName(newName);
+    return productRepository.save(product);
+  }
+
 }
