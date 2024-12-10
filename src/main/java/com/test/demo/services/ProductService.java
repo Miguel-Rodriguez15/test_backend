@@ -40,4 +40,19 @@ public class ProductService {
           throw new IllegalArgumentException("Product does not belong to the specified branch");
       }
   }
+
+  public Product updateStock(Long branchId, Long productId, int newStock) {
+    branchRepository.findById(branchId)
+        .orElseThrow(() -> new ResourceNotFoundException("Branch not found"));
+
+    Product product = productRepository.findById(productId)
+        .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
+
+    if (product.getBranch().getId().equals(branchId)) {
+        product.setStock(newStock); 
+        return productRepository.save(product); 
+    } else {
+        throw new IllegalArgumentException("Product does not belong to the specified branch");
+    }
+}
 }

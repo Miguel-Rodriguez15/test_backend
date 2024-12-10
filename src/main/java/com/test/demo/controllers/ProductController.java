@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,5 +31,11 @@ public class ProductController {
     public ResponseEntity<DeleteResponse> deleteProduct(@PathVariable Long branchId, @PathVariable Long productId) {
         DeleteResponse response = productService.deleteProduct(branchId, productId);
         return ResponseEntity.ok(response);
+    }
+
+        @PutMapping("/{productId}/stock")
+    public ResponseEntity<Product> updateStock(@PathVariable Long branchId, @PathVariable Long productId, @RequestBody int newStock) {
+        Product updatedProduct = productService.updateStock(branchId, productId, newStock);
+        return ResponseEntity.ok(updatedProduct);
     }
 }
