@@ -1,7 +1,13 @@
 package com.test.demo.services;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.test.demo.exceptions.ResourceNotFoundException;
 import com.test.demo.models.entity.Branch;
@@ -49,10 +55,20 @@ public class ProductService {
         .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
 
     if (product.getBranch().getId().equals(branchId)) {
-        product.setStock(newStock); 
-        return productRepository.save(product); 
+      product.setStock(newStock);
+      return productRepository.save(product);
     } else {
-        throw new IllegalArgumentException("Product does not belong to the specified branch");
+      throw new IllegalArgumentException("Product does not belong to the specified branch");
     }
+  }
+
+  public List<Product> getMaxStockProductsByFranchise(Long franchiseId) {
+    List<Branch> branches = branchRepository.findByFranchiseId(franchiseId);
+
+    return branches.stream()
+            .flatMap(branch -> productRepository.findAllWithMaxStockByBranchId(branch.getId()).stream())
+            .distinct()
+            .collect(Collectors.toList());
 }
+      
 }

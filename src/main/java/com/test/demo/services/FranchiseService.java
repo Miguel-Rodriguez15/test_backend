@@ -10,9 +10,9 @@ import com.test.demo.repositories.FranchiseRepository;
 public class FranchiseService {
 
     @Autowired
-    private FranchiseRepository franquiciaRepository;
+    private FranchiseRepository franchiseRepository;
 
     public Franchise addFranchise(Franchise franchise) {
-        return franquiciaRepository.save(franchise);
+        return franchiseRepository.save(franchise);
     }
 }
