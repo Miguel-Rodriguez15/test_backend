@@ -32,8 +32,6 @@ This is a sample project developed using **Spring Boot** and **PostgreSQL** as t
 </div
 
 
-
-
 ## Requirements
 - The project must be developed in Spring Boot.
 - Expose an endpoint to add a new franchise.
@@ -54,22 +52,57 @@ This is a sample project developed using **Spring Boot** and **PostgreSQL** as t
 ## Project Structure
 
 
+
 ```
-/demo
-│
-├── src
-│ ├── main
-│ │ ├── java
-│ │ │ └── com
-│ │ │ └── test
-│ │ │ └── demo
-│ │ │ └── DemoApplication.java
-│ │ └── resources
-│ │ └── application.properties
-│ └── test
-├── pom.xml
-|___DockerFile
-└── docker-compose.yml
+└── 📁demo
+
+    └── 📁src
+        └── 📁main
+            └── 📁java
+                └── 📁com
+                    └── 📁test
+                        └── 📁demo
+                            └── 📁controllers
+                                └── BranchController.java
+                                └── FranchiseController.java
+                                └── ProductController.java
+                            └── 📁exceptions
+                                └── ResourceNotFoundException.java
+                            └── 📁models
+                                └── 📁entity
+                                    └── Branch.java
+                                    └── Franchise.java
+                                    └── Product.java
+                            └── 📁responses
+                                └── DeleteResponse.java
+                            └── 📁repositories
+                                └── BranchRepository.java
+                                └── FranchiseRepository.java
+                                └── ProductRepository.java
+                            └── 📁services
+                                └── BranchService.java
+                                └── FranchiseService.java
+                                └── ProductService.java
+                            └── DemoApplication.java
+            └── 📁resources
+                └── 📁static
+                └── 📁templates
+                └── application.properties
+
+    └── 📁target
+        └── demo-0.0.1-SNAPSHOT.jar
+        └── demo-0.0.1-SNAPSHOT.jar.original
+    └── .env
+    └── .gitattributes
+    └── .gitignore
+    └── docker-compose.yml
+    └── Dockerfile
+    └── HELP.md
+    └── mvnw
+    └── mvnw.cmd
+    └── pom.xml
+    └── README.md
+```
 
 ```
 
