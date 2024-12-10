@@ -1,0 +1,30 @@
+version: '3.1'
+
+services:
+  app:
+    container_name: springboot-app
+    image: springboot-app
+    build: ./
+    ports:
+      - "8080:8080"
+    depends_on:
+      - dbpostgresql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://dbpostgresql:5432/mydb
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: password
+
+  dbpostgresql:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data 
+
+volumes:
+  pgdata: 
