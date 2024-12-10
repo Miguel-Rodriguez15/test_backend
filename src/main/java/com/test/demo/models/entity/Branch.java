@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "branch")
 public class Branch {
@@ -16,6 +18,7 @@ public class Branch {
 
     @ManyToOne
     @JoinColumn(name = "franchise_id", nullable = false)
+    @JsonIgnore 
     private Franchise franchise;
 
     @OneToMany(mappedBy = "branch", cascade = CascadeType.ALL)
