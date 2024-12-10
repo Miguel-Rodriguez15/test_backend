@@ -2,6 +2,8 @@
 
 This is a sample project developed using **Spring Boot** and **PostgreSQL** as the database. The project is configured to run in containers using **Docker** and **Docker Compose**, meeting specific requirements to ensure the functionality that characterizes the system.
 
+
+
 ## Technologies used
 
  <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -104,7 +106,6 @@ This is a sample project developed using **Spring Boot** and **PostgreSQL** as t
     └── README.md
 ```
 
-```
 
 # Configuration local
 ### create an .env file in the project path
